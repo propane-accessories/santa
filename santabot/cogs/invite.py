@@ -15,3 +15,33 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from discord.ext import commands
+
+
+class Invite(commands.Cog):
+    """Parent class for the invite command.
+    """
+
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.command()
+    async def invite(self, ctx: commands.Context):
+        """@santa invite: Returns developer info to the requester.
+
+        Args:
+            ctx (discord.ext.commands.Context): Discord.py command context.
+        """
+        await ctx.channel.trigger_typing()
+        await ctx.send(
+            "This bot was made by and is hosted by "
+            "the Podcast About List Code Monkeys\n"
+            "Check out the GitHub repo here: "
+            "https://github.com/Podcast-About-List/santa\n"
+            "Join the Podcast About List discord here: "
+            "https://podaboutli.st/discord"
+        )
+
+
+def setup(bot):
+
+    bot.add_cog(Invite(bot))
